@@ -1,31 +1,26 @@
+using Internal.Codebase.MoveLogic.Interfaces;
 using UnityEngine;
 
 namespace Internal.Codebase.MoveLogic
 {
-    public class TransformMove
+    public class TransformMove : ITransformMovable
     {
-        public void ForwardMove(Transform transform, float speed)
-        {
-            
-        }
-
-        public void VerticalMove(Transform transform, float speed)
-        {
-            var moveInput = Input.GetAxisRaw("Vertical");
-            Vector3 moveDirection = new Vector3(0, moveInput, 0);
-            transform.Translate(moveDirection * speed * Time.deltaTime);
-        } 
-
         public void HorizontalMove(Transform transform, float speed)
         {
-            var moveInput = Input.GetAxisRaw("Horizontal");
-            Vector3 moveDirection = new Vector3(moveInput, 0, 0); 
-            transform.Translate(moveDirection * speed * Time.deltaTime);
+            var input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
+            transform.Translate(input * speed);
         }
-
-        public void TopDownMove()
+        
+        public void VerticalMove(Transform transform, float speed)
+        { 
+            var input = new Vector3(0, Input.GetAxisRaw("Vertical"), 0); 
+            transform.Translate(input * speed);
+        }
+        
+        public void TopDownMove(Transform transform, float speed)
         {
-            
+            var input = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
+            transform.Translate(input * speed);
         }
     }
 }
