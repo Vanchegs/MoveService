@@ -1,21 +1,25 @@
+using System;
 using Internal.Codebase.MoveLogic;
 using Internal.Codebase.MoveLogic.Interfaces;
 using UnityEngine;
 
-namespace Internal.Example
+namespace Internal.Codebase.Example
 {
     public class Example : MonoBehaviour
     {
-        [SerializeField] private Transform playerTransform;
-        [SerializeField] private Rigidbody2D rb;
-        private const float tSpeed = 0.1f;
-        private const float rbSpeeb = 20;
-        private readonly ITransformMovable transformMove = new TransformMove();
-        private readonly IRbMovable rbMovable = new RbMove();
+        private ITransformMovable tMove = new TransformMove();
+        private Transform pTransform;
+        private float speed;
+
+        private void Start()
+        {
+            speed = 0.1f;
+            pTransform = GetComponent<Transform>();
+        }
 
         private void FixedUpdate()
         {
-            rbMovable.TopDownMove(rb, rbSpeeb);
+            tMove.HorizontalMove(pTransform, speed);
         }
     }
 }

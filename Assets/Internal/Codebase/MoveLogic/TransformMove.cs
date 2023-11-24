@@ -22,5 +22,11 @@ namespace Internal.Codebase.MoveLogic
             var input = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
             transform.Translate(input * speed);
         }
+
+        public void ToPointMove(Transform playerTransform, Transform finishPoint, float speed)
+        {
+            var step = speed * Time.deltaTime;
+            playerTransform.position = Vector3.MoveTowards(playerTransform.position, finishPoint.position, step);
+        }
     }
 }
