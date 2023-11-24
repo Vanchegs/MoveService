@@ -1,6 +1,5 @@
-using System;
-using Internal.Codebase.MoveLogic;
-using Internal.Codebase.MoveLogic.Interfaces;
+using MoveLogic;
+using MoveLogic.Interfaces;
 using UnityEngine;
 
 namespace Internal.Codebase.Example

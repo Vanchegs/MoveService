@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Internal.Codebase.MoveLogic.Interfaces
+namespace MoveLogic.Interfaces
 {
     public interface ITransformMovable
     {
