@@ -1,32 +1,31 @@
-using MoveLogic.Interfaces;
 using UnityEngine;
 
 namespace MoveLogic
 {
-    public class TransformMove : ITransformMovable
+    public static class TransformMove
     {
-        public void HorizontalMove(Transform transform, float speed)
+        public static void HorizontalMove(this Transform playerTransform, float speed)
         {
-            if (transform == null) return;
+            if (playerTransform == null) return;
             var input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
-            transform.Translate(input * speed);
+            playerTransform.Translate(input * speed);
         }
         
-        public void VerticalMove(Transform transform, float speed)
+        public static void VerticalMove(this Transform playerTransform, float speed)
         { 
-            if (transform == null) return;
+            if (playerTransform == null) return;
             var input = new Vector3(0, Input.GetAxisRaw("Vertical"), 0); 
-            transform.Translate(input * speed);
+            playerTransform.Translate(input * speed);
         }
         
-        public void TopDownMove(Transform transform, float speed)
+        public static void TopDownMove(this Transform playerTransform, float speed)
         {
-            if (transform == null) return;
+            if (playerTransform == null) return;
             var input = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
-            transform.Translate(input * speed);
+            playerTransform.Translate(input * speed);
         }
 
-        public void ToPointMove(Transform playerTransform, Transform finishPoint, float speed)
+        public static void ToPointMove(this Transform playerTransform, Transform finishPoint, float speed)
         {
             if (playerTransform == null || finishPoint == null) return;
             var step = speed * Time.deltaTime;
